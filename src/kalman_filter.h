@@ -49,7 +49,7 @@ class KalmanFilter {
    * Performs the same Kalman filter calculation for both linear and non-linear measurements
    * @param y
    */
-  void UpdateForAll(const Eigen::VectorXd &y);
+  void UpdateCommon(const Eigen::VectorXd &y);
 
   // state vector
   Eigen::VectorXd x_;
