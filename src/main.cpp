@@ -9,6 +9,8 @@ using Eigen::MatrixXd;
 using Eigen::VectorXd;
 using std::string;
 using std::vector;
+using std::cout;
+using std::endl;
 
 // for convenience
 using json = nlohmann::json;
@@ -111,8 +113,7 @@ int main() {
           fusionEKF.ProcessMeasurement(meas_package);       
 
           // Push the current estimated x,y positon from the Kalman filter's 
-          //   state vector
-
+          // state vector
           VectorXd estimate(4);
 
           double p_x = fusionEKF.ekf_.x_(0);
@@ -128,7 +129,7 @@ int main() {
           estimations.push_back(estimate);
 
           VectorXd RMSE = tools.CalculateRMSE(estimations, ground_truth);
-
+          cout<<"RMSE:\n"<<RMSE<<endl;
           json msgJson;
           msgJson["estimate_x"] = p_x;
           msgJson["estimate_y"] = p_y;
