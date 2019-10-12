@@ -46,6 +46,12 @@ class KalmanFilter {
    */
   void UpdateEKF(const Eigen::VectorXd &z);
 
+  /**
+   * Performs the same Kalman filter calculation for both linear and non-linear measurements
+   * @param y
+   */
+  void UpdateForAll(const Eigen::VectorXd &y);
+
   // state vector
   Eigen::VectorXd x_;
 
@@ -63,6 +69,8 @@ class KalmanFilter {
 
   // measurement covariance matrix
   Eigen::MatrixXd R_;
+
+  Tools tools;
 };
 
 #endif // KALMAN_FILTER_H_
