@@ -4,7 +4,7 @@
 using Eigen::VectorXd;
 using Eigen::MatrixXd;
 using std::vector;
-
+using namespace std;
 Tools::Tools() {}
 
 Tools::~Tools() {}
@@ -23,13 +23,13 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
       rmse += residuals;
    }
 
-   rmse /= rmse/estimations.size();
+   rmse = rmse/estimations.size();
    rmse = rmse.array().sqrt();
    return rmse;
 }
 
 MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
-  Matrix Hj(3,4);
+  MatrixXd Hj(3,4);
   float px = x_state(0);
   float py = x_state(1);
   float vx = x_state(2);
