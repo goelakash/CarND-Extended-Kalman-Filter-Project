@@ -71,7 +71,6 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
       float rho_dot = measurement_pack.raw_measurements_(2);
 
       ekf_.x_ << rho*cos(theta), rho*sin(theta), rho_dot*cos(theta), rho_dot*sin(theta);
-
     }
     else if (measurement_pack.sensor_type_ == MeasurementPackage::LASER) {
       ekf_.x_ << measurement_pack.raw_measurements_(0), measurement_pack.raw_measurements_(1), 0.0, 0.0;
@@ -86,7 +85,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
    * Prediction
    */
 
-  float dt = (measurement_pack.timestamp_ - previous_timestamp_)/1000000;
+  float dt = (measurement_pack.timestamp_ - previous_timestamp_)/1000000.0;
   float dt_2 = dt*dt;
   float dt_3 = dt_2*dt;
   float dt_4 = dt_3*dt;
